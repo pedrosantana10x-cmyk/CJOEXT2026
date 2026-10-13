@@ -62,5 +62,29 @@
     <footer>
 
     </footer>
+    <!--JS adicionado por Pedro Ferreira -->
+    <script>
+function salvarEAvancar() {
+    const respA = document.getElementById('respostaA').value;
+    const respB = document.getElementById('respostaB').value;
+    const respC = document.getElementById('respostaC').value;
+
+    localStorage.setItem('q13_respostaA', respA);
+    localStorage.setItem('q13_respostaB', respB);
+    localStorage.setItem('q13_respostaC', respC);
+    console.log("Respostas salvas com sucesso!");
+    window.location.href = 'lista_de_exercicio_14.html';
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    const respASalva = localStorage.getItem('q13_respostaA');
+    const respBSalva = localStorage.getItem('q13_respostaB');
+    const respCSalva = localStorage.getItem('q13_respostaC');
+
+    if (respASalva) document.getElementById('respostaA').value = respASalva;
+    if (respBSalva) document.getElementById('respostaB').value = respBSalva;
+    if (respCSalva) document.getElementById('respostaC').value = respCSalva;
+});
+    </script>
 </body>
 </html>
