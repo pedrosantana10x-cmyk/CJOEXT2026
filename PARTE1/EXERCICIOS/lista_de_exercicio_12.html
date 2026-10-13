@@ -62,5 +62,50 @@
     <footer>
 
     </footer>
+    <!--JS adicionado por Pedro Ferreira-->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+    const inputNomeSite = document.getElementById("nomeSite");
+    const inputAcessibilidade = document.getElementById("recursoAcessibilidade");
+    const inputMelhoria = document.getElementById("melhoria");
+    const btnEnviar = document.getElementById("enviarResposta1");
+
+    const carregarRespostas = () => {
+        const respostasSalvas = localStorage.getItem("respostas_questao12");
+        if (respostasSalvas) {
+            const dados = JSON.parse(respostasSalvas);
+            if (inputNomeSite) inputNomeSite.value = dados.nomeSite || "";
+            if (inputAcessibilidade) inputAcessibilidade.value = dados.recursoAcessibilidade || "";
+            if (inputMelhoria) inputMelhoria.value = dados.melhoria || "";
+        }
+    };
+
+    const salvarRespostas = () => {
+        const dadosRespostas = {
+            nomeSite: inputNomeSite ? inputNomeSite.value : "",
+            recursoAcessibilidade: inputAcessibilidade ? inputAcessibilidade.value : "",
+            melhoria: inputMelhoria ? inputMelhoria.value : "",
+            dataEnvio: new Date().toISOString()
+        };
+
+        localStorage.setItem("respostas_questao12", JSON.stringify(dadosRespostas));
+    };
+
+    carregarRespostas();
+
+    [inputNomeSite, inputAcessibilidade, inputMelhoria].forEach(input => {
+        if (input) {
+            input.addEventListener("input", salvarRespostas);
+        }
+    });
+
+    if (btnEnviar) {
+        btnEnviar.addEventListener("click", (e) => {
+            e.preventDefault();
+            salvarRespostas();
+        });
+    }
+});
+    </script>
 </body>
 </html>
