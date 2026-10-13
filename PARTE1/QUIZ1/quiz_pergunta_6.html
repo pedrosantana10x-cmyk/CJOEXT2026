@@ -1,36 +1,59 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pergunta 1</title>
+    <title>Questão 1</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <header>
-
+        <div class="TituloPartes">
+            <h2 class="TextoPartes">Parte I<br>Compreendendo Os Conceitos</h2>
+        </div>
     </header>
-
     <main>
         <div class="Pergunta">
-            <h2>A Acessibilidade Digital Beneficia Apenas Pessoas Com Deficiência</h2>
+            <h2>Explique com suas próprias palavras o que significa acessibilidade digital.</h2>
         </div>
-        <div class="RespostasTopo">
-            <div class="Resposta1">
-                <button id="respostaNumero1" onclick="location.href = 'resultado.html';">Verdadeiro</button>
-            </div>
-            <div class="Resposta2">
-                <button id="respostaNumero2" onclick="somarPonto(); location.href = 'resultado.html';">Falso</button>
-            </div>
+        <div class="ContainerResposta">
+            <input 
+                id="respostaInput1"
+                placeholder="Digite aqui..."
+                class="RespostaInput EscritaLisa"
+                type="text"
+            />
+            <label class="LabelResposta">Sua Resposta</label>
+        </div>
+        <br>
+        <div class="BotaoEnviar">
+            <button id="enviarResposta1">Enviar</button>
         </div>
     </main>
+    <footer></footer>
 
-    <footer>
-
-    </footer>
-
-    <script src="js/quiz.js"></script>
-    
+    <!-- Pedro Ferreira adicionou o JS à essa página-->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+    const inputResposta = document.getElementById("respostaInput1");
+    const btnEnviar = document.getElementById("enviarResposta1");
+    const respostaSalva = localStorage.getItem("questao_1");
+    if (respostaSalva && inputResposta) {
+        inputResposta.value = respostaSalva;
+    }
+            
+    if (btnEnviar) {
+        btnEnviar.addEventListener("click", () => {
+            const textoResposta = inputResposta ? inputResposta.value.trim() : "";
+            if (!textoResposta) {
+                alert("Por favor, digite sua resposta antes de enviar!");
+                return;
+            }
+            localStorage.setItem("questao_1", textoResposta);
+            window.location.href = "lista_de_exercicio_2.html";
+        });
+    }
+});
+    </script> 
 </body>
-</html>
-<!-- 0% IA -->
+</html><!-- 0% IA -->
