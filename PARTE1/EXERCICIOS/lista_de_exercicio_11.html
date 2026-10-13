@@ -45,5 +45,30 @@
     <footer>
 
     </footer>
+    <!--JS adicionado por Pedro Ferreira --> 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const inputResposta = document.querySelector('.RespostaInput');
+    const botaoEnviar = document.getElementById('enviarResposta1');
+
+    const CHAVE_STORAGE = 'resposta_questao_11';
+    const respostaSalva = localStorage.getItem(CHAVE_STORAGE);
+    if (respostaSalva) {
+        inputResposta.value = respostaSalva;
+    }
+
+    botaoEnviar.addEventListener('click', (event) => {
+        const valorDigitado = inputResposta.value.trim();
+
+        if (valorDigitado === '') {
+            event.preventDefault(); 
+            alert('Por favor, digite uma resposta antes de enviar!');
+            return;
+        }
+
+        localStorage.setItem(CHAVE_STORAGE, valorDigitado);
+    });
+});
+    </script>
 </body>
 </html>
