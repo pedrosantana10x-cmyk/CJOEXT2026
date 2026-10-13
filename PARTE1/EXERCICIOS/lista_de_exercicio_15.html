@@ -21,7 +21,7 @@
         </div>
 
         <div class="ContainerResposta">
-            <input placeholder="Digite aqui..."
+            <input id="respostaInupt" placeholder="Digite aqui..."
             class="RespostaInput EscritaLisa"
             type="text"
             />
@@ -41,5 +41,27 @@
     <footer>
 
     </footer>
+    <!--JS adicionado por Pedro Ferreira-->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+    const botaoEnviar = document.getElementById("enviarResposta1");
+    const inputResposta = document.getElementById("respostaInput");
+    const respostaSalva = localStorage.getItem("resposta_questao_15");
+    if (respostaSalva) {
+        inputResposta.value = respostaSalva;
+    }
+
+    botaoEnviar.addEventListener("click", () => {
+        const textoResposta = inputResposta.value.trim();
+
+        if (textoResposta === "") {
+            alert("Por favor, digite uma resposta antes de enviar!");
+            return;
+        }
+
+        localStorage.setItem("resposta_questao_15", textoResposta);
+    });
+});
+    </script>
 </body>
 </html>
