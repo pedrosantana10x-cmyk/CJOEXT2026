@@ -72,5 +72,38 @@
     <footer>
 
     </footer>
+    <!--JS adicionado por Pedro Ferreira-->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+    const inputs = document.querySelectorAll(".RespostaInput");
+    const botaoEnviar = document.getElementById("enviarResposta1");
+    const STORAGE_KEY = "respostas_questao_14";
+    const respostasSalvas = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+
+    inputs.forEach((input, index) => {
+        if (respostasSalvas[index]) {
+            input.value = respostasSalvas[index];
+        }
+
+        input.addEventListener("input", () => {
+            salvarRespostas();
+        });
+    });
+
+    function salvarRespostas() {
+        const valores = Array.from(inputs).map(input => input.value);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(valores));
+    }
+
+    if (botaoEnviar) {
+        botaoEnviar.addEventListener("click", (e) => {
+            salvarRespostas();
+
+            alert("Respostas salvas com sucesso!");
+
+        });
+    }
+});
+    </script>
 </body>
 </html>
