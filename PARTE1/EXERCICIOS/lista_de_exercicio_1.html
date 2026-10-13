@@ -31,5 +31,32 @@
     <footer>
 
     </footer>
+    <!--Js adicionado por Pedro Ferreira -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const inputResposta = document.querySelector('.RespostaInput');
+    const botaoEnviar = document.getElementById('enviarResposta1');
+
+    const CHAVE_STORAGE = 'resposta_questao_1';
+
+    const respostaSalva = localStorage.getItem(CHAVE_STORAGE);
+    if (respostaSalva) {
+        inputResposta.value = respostaSalva;
+    }
+
+    function salvarResposta() {
+        const texto = inputResposta.value.trim();
+        if (texto !== '') {
+            localStorage.setItem(CHAVE_STORAGE, texto);
+        }
+    }
+    inputResposta.addEventListener('input', () => {
+        localStorage.setItem(CHAVE_STORAGE, inputResposta.value);
+    });
+    botaoEnviar.addEventListener('click', (event) => {
+        salvarResposta();
+    });
+});
+    </script>
 </body>
 </html>
